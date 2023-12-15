@@ -53,8 +53,8 @@ function toggleRead(book) {
 }
 
 // Dummy entries
-b1 = new Book("Dummy Book 1", "Dummy Author 1");
-b2 = new Book("Dummy Book 2", "Dummy Author 2");
+b1 = new Book("Dummy Book 1", "Dummy Author 1", 100, true);
+b2 = new Book("Dummy Book 2", "Dummy Author 2", 200, false);
 addBookToLibrary(b1);
 addBookToLibrary(b2);
 listBooks();
@@ -78,6 +78,9 @@ submitButton.addEventListener("click", () => {
   newRead = document.getElementById("read").checked;
 
   if (newTitle != "" && newAuthor != "") {
+    if (newPages == "") {
+      newPages = 0;
+    }
     newBook = new Book(newTitle, newAuthor, newPages, newRead);
     addBookToLibrary(newBook);
     listBooks();
