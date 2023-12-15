@@ -1,8 +1,10 @@
 const library = []
 
-function Book(title, author) {
+function Book(title, author, pageCount, read) {
   this.title = title;
   this.author = author;
+  this.pages = pageCount;
+  this.read = read;
 }
 
 
@@ -24,6 +26,8 @@ function listBooks() {
     let newRow = tBody.insertRow();
     let newTitle = newRow.insertCell();
     let newAuthor = newRow.insertCell();
+    let newPages = newRow.insertCell();
+    let newRead = newRow.insertCell();
     let newDeleteCell = newRow.insertCell();
 
     let newDeleteButton = document.createElement("button");
@@ -34,15 +38,19 @@ function listBooks() {
 
     newTitle.innerText = book.title;
     newAuthor.innerText = book.author;
+    newPages.innerText = book.pages;
+    newRead.innerText = book.read;
   }
 }
 
 document.querySelector("#addButton").addEventListener("click", () => {
   newTitle = document.getElementById("title").value;
   newAuthor = document.getElementById("author").value;
+  newPages = document.getElementById("pages").value;
+  newRead = document.getElementById("read").checked;
 
   if (newTitle != "" && newAuthor != "") {
-    newBook = new Book(newTitle, newAuthor);
+    newBook = new Book(newTitle, newAuthor, newPages, newRead);
     addBookToLibrary(newBook);
     listBooks();
   }
