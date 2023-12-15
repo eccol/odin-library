@@ -6,7 +6,7 @@ Current features:
 * Add and remove books
 
 To-do:  
-* Number of pages field  
+* Edit books
 * Toggle read status  
 * Persistent storage  
 * Styling  
