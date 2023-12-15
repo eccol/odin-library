@@ -43,7 +43,26 @@ function listBooks() {
   }
 }
 
-document.querySelector("#addButton").addEventListener("click", () => {
+// Dummy entries
+b1 = new Book("Dummy Book 1", "Dummy Author 1");
+b2 = new Book("Dummy Book 2", "Dummy Author 2");
+addBookToLibrary(b1);
+addBookToLibrary(b2);
+listBooks();
+
+// Form dialog
+
+const dialog = document.querySelector("dialog");
+const showButton = document.getElementById("addButton");
+const submitButton = document.getElementById("submitButton");
+const cancelButton = document.getElementById("cancelButton");
+
+showButton.addEventListener("click", () => {
+  dialog.showModal();
+})
+
+submitButton.addEventListener("click", () => {
+  dialog.close();
   newTitle = document.getElementById("title").value;
   newAuthor = document.getElementById("author").value;
   newPages = document.getElementById("pages").value;
@@ -56,9 +75,6 @@ document.querySelector("#addButton").addEventListener("click", () => {
   }
 })
 
-// Dummy entries
-b1 = new Book("Dummy Book 1", "Dummy Author 1");
-b2 = new Book("Dummy Book 2", "Dummy Author 2");
-addBookToLibrary(b1);
-addBookToLibrary(b2);
-listBooks();
+cancelButton.addEventListener("click", () => {
+  dialog.close();
+})
