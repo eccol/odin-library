@@ -11,13 +11,6 @@ function addBookToLibrary(book) {
   library.push(book);
 }
 
-// deleteBook is only called via click event
-function deleteBook(e) {
-  console.log(e.currentTarget.dataset.index)
-  library.splice(e.currentTarget.dataset.index, 1);
-  listBooks();
-}
-
 function listBooks() {
   let tBody = document.querySelector("tbody");
   tBody.innerHTML = "";
@@ -33,7 +26,10 @@ function listBooks() {
     let newDeleteButton = document.createElement("button");
     newDeleteButton.innerText = "Delete";
     newDeleteButton.dataset.index = i;
-    newDeleteButton.addEventListener("click", deleteBook);
+    newDeleteButton.addEventListener("click", (e) => {
+      library.splice(e.currentTarget.dataset.index, 1);
+      listBooks();
+    });
     newDeleteCell.appendChild(newDeleteButton);
 
     newRead.addEventListener("click", () => {
