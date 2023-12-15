@@ -4,9 +4,9 @@ Create a list of books using local storage.
 
 Current features:  
 * Add and remove books
+* Toggle read by clicking status
 
 To-do:  
 * Edit books
-* Toggle read status  
 * Persistent storage  
 * Styling  

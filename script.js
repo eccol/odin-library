@@ -7,11 +7,11 @@ function Book(title, author, pageCount, read) {
   this.read = read;
 }
 
-
 function addBookToLibrary(book) {
   library.push(book);
 }
 
+// deleteBook is only called via click event
 function deleteBook(e) {
   console.log(e.currentTarget.dataset.index)
   library.splice(e.currentTarget.dataset.index, 1);
@@ -36,11 +36,20 @@ function listBooks() {
     newDeleteButton.addEventListener("click", deleteBook);
     newDeleteCell.appendChild(newDeleteButton);
 
+    newRead.addEventListener("click", () => {
+      toggleRead(book);
+    })
+
     newTitle.innerText = book.title;
     newAuthor.innerText = book.author;
     newPages.innerText = book.pages;
     newRead.innerText = book.read;
   }
+}
+
+function toggleRead(book) {
+  book.read = !book.read;
+  listBooks();
 }
 
 // Dummy entries
