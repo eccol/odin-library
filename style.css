@@ -1,5 +1,42 @@
+/* Table formatting */
+
 table,
 th,
 td {
   border: 1px solid black;
+  text-align: center;
+}
+
+/* Page display */
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: max(800px, 80%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#addButton {
+  width: 50%;
+}
+
+table {
+  width: 100%;
+  margin: 1rem;
+}
+
+/* Modal display */
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog form * {
+  margin: 0.3rem;
 }
