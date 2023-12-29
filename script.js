@@ -8,7 +8,6 @@ class Book {
 
   toggleRead() {
     this.read = !this.read;
-    listBooks();
   }
 }
 
