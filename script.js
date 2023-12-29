@@ -66,31 +66,33 @@ listBooks();
 
 // Form dialog
 
-const dialog = document.querySelector("dialog");
-const showButton = document.getElementById("addButton");
-const submitButton = document.getElementById("submitButton");
-const cancelButton = document.getElementById("cancelButton");
+const formController = (() => {
+  const dialog = document.querySelector("dialog");
+  const showButton = document.getElementById("addButton");
+  const submitButton = document.getElementById("submitButton");
+  const cancelButton = document.getElementById("cancelButton");
 
-showButton.addEventListener("click", () => {
-  dialog.showModal();
-})
+  showButton.addEventListener("click", () => {
+    dialog.showModal();
+  })
 
-submitButton.addEventListener("click", () => {
-  dialog.close();
-  newTitle = document.getElementById("title").value;
-  newAuthor = document.getElementById("author").value;
-  newPages = document.getElementById("pages").value;
-  newRead = document.getElementById("read").checked;
+  submitButton.addEventListener("click", () => {
+    dialog.close();
+    newTitle = document.getElementById("title").value;
+    newAuthor = document.getElementById("author").value;
+    newPages = document.getElementById("pages").value;
+    newRead = document.getElementById("read").checked;
 
-  if (newTitle != "" && newAuthor != "") {
-    if (newPages == "") {
-      newPages = 0;
+    if (newTitle != "" && newAuthor != "") {
+      if (newPages == "") {
+        newPages = 0;
+      }
+      library.addBook(newTitle, newAuthor, newPages, newRead);
+      listBooks();
     }
-    library.addBook(newTitle, newAuthor, newPages, newRead);
-    listBooks();
-  }
-})
+  })
 
-cancelButton.addEventListener("click", () => {
-  dialog.close();
-})
+  cancelButton.addEventListener("click", () => {
+    dialog.close();
+  })
+})();
