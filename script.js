@@ -29,7 +29,7 @@ class Library {
   }
 }
 
-function listBooks() {
+function updateTable() {
   let tBody = document.querySelector("tbody");
   tBody.innerHTML = "";
   for (let i = 0; i < library.bookCount; i++) {
@@ -46,7 +46,7 @@ function listBooks() {
     newDeleteButton.dataset.index = i;
     newDeleteButton.addEventListener("click", (e) => {
       library.deleteBook(e.currentTarget.dataset.index);
-      listBooks();
+      updateTable();
     });
     newDeleteCell.appendChild(newDeleteButton);
 
@@ -66,7 +66,7 @@ const library = new Library;
 // Dummy entries
 library.addBook("Dummy Book 1", "Dummy Author 1", 100, true);
 library.addBook("Dummy Book 2", "Dummy Author 2", 200, false);
-listBooks();
+updateTable();
 
 // Form dialog
 
@@ -92,7 +92,7 @@ const formController = (() => {
         newPages = 0;
       }
       library.addBook(newTitle, newAuthor, newPages, newRead);
-      listBooks();
+      updateTable();
     }
   })
 
