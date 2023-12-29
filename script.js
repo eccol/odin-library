@@ -30,6 +30,28 @@ class Library {
 }
 
 function updateDisplay() {
+  document.querySelector(".output-container").innerHTML = "";
+  if (document.getElementById("table-switch").checked) {
+    updateDisplayTable();
+  } else {
+    updateDisplayBoxes();
+  }
+}
+
+function updateDisplayBoxes() {
+  container = document.querySelector(".output-container");
+  for (let i = 0; i < library.bookCount; i++) {
+    const book = library.books[i];
+    const card = document.querySelector(".card-template").content.cloneNode(true);
+    card.querySelector(".title").innerText = book.title;
+    card.querySelector(".author").innerText = book.author;
+    card.querySelector(".pages").innerText = book.pages;
+    card.querySelector(".read").innerText = book.read;
+    container.appendChild(card);
+  }
+}
+
+function updateDisplayTable() {
   document.querySelector(".output-container").innerHTML = `<table>
         <thead>
           <tr>
@@ -41,11 +63,9 @@ function updateDisplay() {
           </tr>
         </thead>
         <tbody>
-          <!-- JS will fill this -->
         </tbody>
       </table>`
   let tBody = document.querySelector("tbody");
-  tBody.innerHTML = "";
   for (let i = 0; i < library.bookCount; i++) {
     const book = library.books[i];
     let newRow = tBody.insertRow();
