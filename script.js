@@ -44,11 +44,25 @@ function updateDisplayBoxes() {
   cardContainer.classList.add("card-container");
   for (let i = 0; i < library.bookCount; i++) {
     const book = library.books[i];
-    const card = document.querySelector(".card-template").content.cloneNode(true);
+    const card = document.querySelector(".card-template").content.cloneNode(true).querySelector(".card");
     card.querySelector(".title").innerText = book.title;
     card.querySelector(".author").innerText = book.author;
-    card.querySelector(".pages").innerText = book.pages;
-    card.querySelector(".read").innerText = book.read;
+    card.querySelector(".pages").innerText = book.pages + " pages";
+    if (book.read) {
+      card.querySelector(".read").innerText = "read";
+    } else {
+      card.querySelector(".read").innerText = "unread";
+    }
+
+    let newDeleteButton = document.createElement("button");
+    newDeleteButton.innerText = "Delete";
+    newDeleteButton.dataset.index = i;
+    newDeleteButton.addEventListener("click", (e) => {
+      library.deleteBook(e.currentTarget.dataset.index);
+      updateDisplay();
+    });
+    card.appendChild(newDeleteButton);
+
     cardContainer.appendChild(card);
   }
   container.appendChild(cardContainer);
