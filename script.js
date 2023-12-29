@@ -30,6 +30,20 @@ class Library {
 }
 
 function updateDisplay() {
+  document.querySelector(".output-container").innerHTML = `<table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Read</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- JS will fill this -->
+        </tbody>
+      </table>`
   let tBody = document.querySelector("tbody");
   tBody.innerHTML = "";
   for (let i = 0; i < library.bookCount; i++) {
