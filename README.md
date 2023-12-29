@@ -5,6 +5,7 @@ Create a list of books using local storage.
 Current features:  
 * Add and remove books
 * Toggle read by clicking status
+* Toggle between table view and card view
 
 To-do:  
 * Edit books
