@@ -109,6 +109,9 @@ const formController = (() => {
   const showButton = document.getElementById("addButton");
   const submitButton = document.getElementById("submitButton");
   const cancelButton = document.getElementById("cancelButton");
+  const tableToggle = document.getElementById("table-switch");
+
+  tableToggle.addEventListener("change", updateDisplay);
 
   showButton.addEventListener("click", () => {
     dialog.showModal();
