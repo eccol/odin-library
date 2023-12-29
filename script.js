@@ -48,11 +48,16 @@ function updateDisplayBoxes() {
     card.querySelector(".title").innerText = book.title;
     card.querySelector(".author").innerText = book.author;
     card.querySelector(".pages").innerText = book.pages + " pages";
+    newRead = card.querySelector(".read");
     if (book.read) {
-      card.querySelector(".read").innerText = "read";
+      newRead.innerText = "read";
     } else {
-      card.querySelector(".read").innerText = "unread";
+      newRead.innerText = "unread";
     }
+    newRead.addEventListener("click", () => {
+      book.toggleRead()
+      updateDisplay();
+    })
 
     let newDeleteButton = document.createElement("button");
     newDeleteButton.innerText = "Delete";
@@ -103,6 +108,7 @@ function updateDisplayTable() {
 
     newRead.addEventListener("click", () => {
       book.toggleRead();
+      updateDisplay();
     })
 
     newTitle.innerText = book.title;
