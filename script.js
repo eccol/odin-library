@@ -19,6 +19,10 @@ class Library {
   addBook(title, author, pageCount, read) {
     this.books.push(new Book(title, author, pageCount, read));
   }
+
+  deleteBook(i) {
+    this.books.splice(i, 1);
+  }
 }
 
 function listBooks() {
@@ -37,7 +41,7 @@ function listBooks() {
     newDeleteButton.innerText = "Delete";
     newDeleteButton.dataset.index = i;
     newDeleteButton.addEventListener("click", (e) => {
-      library.splice(e.currentTarget.dataset.index, 1);
+      library.deleteBook(e.currentTarget.dataset.index);
       listBooks();
     });
     newDeleteCell.appendChild(newDeleteButton);
