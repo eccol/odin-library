@@ -15,8 +15,12 @@ body {
   justify-content: center;
 }
 
-.container {
+.container,
+.controls-container {
   width: max(800px, 80%);
+}
+
+.center-vertically {
   display: flex;
   flex-direction: column;
   align-items: center;
