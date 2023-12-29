@@ -1,10 +1,17 @@
 const library = []
 
-function Book(title, author, pageCount, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pageCount;
-  this.read = read;
+class Book {
+  constructor(title, author, pageCount, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pageCount;
+    this.read = read;
+  }
+
+  toggleRead() {
+    this.read = !this.read;
+    listBooks();
+  }
 }
 
 function addBookToLibrary(book) {
@@ -33,7 +40,7 @@ function listBooks() {
     newDeleteCell.appendChild(newDeleteButton);
 
     newRead.addEventListener("click", () => {
-      toggleRead(book);
+      book.toggleRead();
     })
 
     newTitle.innerText = book.title;
@@ -43,10 +50,7 @@ function listBooks() {
   }
 }
 
-function toggleRead(book) {
-  book.read = !book.read;
-  listBooks();
-}
+
 
 // Dummy entries
 b1 = new Book("Dummy Book 1", "Dummy Author 1", 100, true);
