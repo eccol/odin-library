@@ -40,6 +40,8 @@ function updateDisplay() {
 
 function updateDisplayBoxes() {
   container = document.querySelector(".output-container");
+  cardContainer = document.createElement("div");
+  cardContainer.classList.add("card-container");
   for (let i = 0; i < library.bookCount; i++) {
     const book = library.books[i];
     const card = document.querySelector(".card-template").content.cloneNode(true);
@@ -47,8 +49,9 @@ function updateDisplayBoxes() {
     card.querySelector(".author").innerText = book.author;
     card.querySelector(".pages").innerText = book.pages;
     card.querySelector(".read").innerText = book.read;
-    container.appendChild(card);
+    cardContainer.appendChild(card);
   }
+  container.appendChild(cardContainer);
 }
 
 function updateDisplayTable() {

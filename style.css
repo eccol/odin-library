@@ -8,6 +8,17 @@ td {
   text-align: center;
 }
 
+/* Card formatting */
+
+.card-container {
+  display: flex;
+}
+
+.card {
+  border: 1px solid black;
+  padding: 0;
+}
+
 /* Page display */
 
 body {
