@@ -23,12 +23,16 @@ class Library {
   deleteBook(i) {
     this.books.splice(i, 1);
   }
+
+  get bookCount() {
+    return this.books.length;
+  }
 }
 
 function listBooks() {
   let tBody = document.querySelector("tbody");
   tBody.innerHTML = "";
-  for (let i = 0; i < library.books.length; i++) {
+  for (let i = 0; i < library.bookCount; i++) {
     const book = library.books[i];
     let newRow = tBody.insertRow();
     let newTitle = newRow.insertCell();
