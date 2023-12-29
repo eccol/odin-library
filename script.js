@@ -1,5 +1,3 @@
-const library = []
-
 class Book {
   constructor(title, author, pageCount, read) {
     this.title = title;
@@ -14,15 +12,21 @@ class Book {
   }
 }
 
-function addBookToLibrary(book) {
-  library.push(book);
+class Library {
+  constructor() {
+    this.books = [];
+  }
+
+  addBook(title, author, pageCount, read) {
+    this.books.push(new Book(title, author, pageCount, read));
+  }
 }
 
 function listBooks() {
   let tBody = document.querySelector("tbody");
   tBody.innerHTML = "";
-  for (let i = 0; i < library.length; i++) {
-    const book = library[i];
+  for (let i = 0; i < library.books.length; i++) {
+    const book = library.books[i];
     let newRow = tBody.insertRow();
     let newTitle = newRow.insertCell();
     let newAuthor = newRow.insertCell();
@@ -50,13 +54,11 @@ function listBooks() {
   }
 }
 
-
+const library = new Library;
 
 // Dummy entries
-b1 = new Book("Dummy Book 1", "Dummy Author 1", 100, true);
-b2 = new Book("Dummy Book 2", "Dummy Author 2", 200, false);
-addBookToLibrary(b1);
-addBookToLibrary(b2);
+library.addBook("Dummy Book 1", "Dummy Author 1", 100, true);
+library.addBook("Dummy Book 2", "Dummy Author 2", 200, false);
 listBooks();
 
 // Form dialog
@@ -81,8 +83,7 @@ submitButton.addEventListener("click", () => {
     if (newPages == "") {
       newPages = 0;
     }
-    newBook = new Book(newTitle, newAuthor, newPages, newRead);
-    addBookToLibrary(newBook);
+    library.addBook(newTitle, newAuthor, newPages, newRead);
     listBooks();
   }
 })
