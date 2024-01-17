@@ -41,3 +41,9 @@ dialog form {
 dialog form * {
   margin: 0.3rem;
 }
+
+/* Form formatting */
+
+form input:invalid {
+  border: 1px solid orange;
+}

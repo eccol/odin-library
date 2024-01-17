@@ -1,8 +1,8 @@
 class Book {
-  constructor(title, author, pageCount, read) {
+  constructor({ title, author, pages, read }) {
     this.title = title;
     this.author = author;
-    this.pages = pageCount;
+    this.pages = pages;
     this.read = read;
   }
 
@@ -16,8 +16,8 @@ class Library {
     this.books = [];
   }
 
-  addBook(title, author, pageCount, read) {
-    this.books.push(new Book(title, author, pageCount, read));
+  addBook({ title, author, pages, read }) {
+    this.books.push(new Book({ title, author, pages, read }));
   }
 
   deleteBook(i) {
@@ -52,7 +52,7 @@ function updateTable() {
 
     newRead.addEventListener("click", () => {
       book.toggleRead();
-    })
+    });
 
     newTitle.innerText = book.title;
     newAuthor.innerText = book.author;
@@ -61,11 +61,21 @@ function updateTable() {
   }
 }
 
-const library = new Library;
+const library = new Library();
 
 // Dummy entries
-library.addBook("Dummy Book 1", "Dummy Author 1", 100, true);
-library.addBook("Dummy Book 2", "Dummy Author 2", 200, false);
+library.addBook({
+  title: "Dummy Book 1",
+  author: "Dummy Author 1",
+  pages: 100,
+  read: true,
+});
+library.addBook({
+  title: "Dummy Book 2",
+  author: "Dummy Author 2",
+  pages: 200,
+  read: false,
+});
 updateTable();
 
 // Form dialog
@@ -78,25 +88,48 @@ const formController = (() => {
 
   showButton.addEventListener("click", () => {
     dialog.showModal();
-  })
+  });
 
-  submitButton.addEventListener("click", () => {
-    dialog.close();
-    newTitle = document.getElementById("title").value;
-    newAuthor = document.getElementById("author").value;
-    newPages = document.getElementById("pages").value;
-    newRead = document.getElementById("read").checked;
+  submitButton.addEventListener("click", (e) => {
+    title = document.getElementById("title");
+    author = document.getElementById("author");
+    pages = document.getElementById("pages");
+    read = document.getElementById("read");
 
-    if (newTitle != "" && newAuthor != "") {
-      if (newPages == "") {
-        newPages = 0;
-      }
-      library.addBook(newTitle, newAuthor, newPages, newRead);
-      updateTable();
+    if (title.validity.valueMissing) {
+      title.setCustomValidity("You must provide a title.");
+      return;
+    } else {
+      title.setCustomValidity("");
     }
-  })
+    if (author.validity.valueMissing) {
+      author.setCustomValidity("You must provide an author.");
+      return;
+    } else {
+      author.setCustomValidity("");
+    }
+    if (pages.validity.rangeUnderflow) {
+      pages.setCustomValidity("Book must have a page count.");
+      return;
+    } else {
+      pages.setCustomValidity("");
+    }
+
+    // Preventing default too early stops the automatic validation
+    // But we need it now so the page stays put
+    e.preventDefault();
+
+    dialog.close();
+    library.addBook({
+      title: title.value,
+      author: author.value,
+      pages: pages.value,
+      read: read.checked,
+    });
+    updateTable();
+  });
 
   cancelButton.addEventListener("click", () => {
     dialog.close();
-  })
+  });
 })();
